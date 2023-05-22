@@ -1,9 +1,7 @@
 ﻿using API_BlogPlatform.Domain.IRepositories;
 using API_BlogPlatform.Domain.IServices;
 using API_BlogPlatform.Domain.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace API_BlogPlatform.Services
