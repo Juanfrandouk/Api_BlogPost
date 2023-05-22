@@ -2,6 +2,7 @@
 using API_BlogPlatform.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API_BlogPlatform.Controllers
@@ -27,7 +28,7 @@ namespace API_BlogPlatform.Controllers
             {
                 if (blogPost.Author == null || blogPost.Content == null || blogPost.Title == null)
                 {
-                    return BadRequest(new { message = "Blog no valido" });
+                    return BadRequest(new { message = "not valid Blog" });
                 }
                 await _blogPostService.AddBlogPost(blogPost);
                 return Ok(blogPost);
@@ -49,6 +50,10 @@ namespace API_BlogPlatform.Controllers
             try
             {
                 var listBlogPost = await _blogPostService.GetAllBlogPosts();
+                if (listBlogPost == null || listBlogPost.Count() == 0)
+                {
+                    return Ok(new { message = "There is not blog resgistered " });
+                }
                 return Ok(listBlogPost);
             }
             catch (Exception ex)
