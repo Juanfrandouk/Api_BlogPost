@@ -1,11 +1,12 @@
 ﻿using API_BlogPlatform.Domain.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace API_BlogPlatform.Domain.IServices
 {
+    /// <summary>
+    /// Interface for  BlogPostService
+    /// </summary>
     public interface IBlogPostService
     {
         Task<IEnumerable<BlogPost>> GetAllBlogPosts(); // Returns a list of all blog posts.

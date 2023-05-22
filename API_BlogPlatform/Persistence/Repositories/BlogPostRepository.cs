@@ -2,13 +2,15 @@
 using API_BlogPlatform.Domain.Models;
 using API_BlogPlatform.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace API_BlogPlatform.Persistence.Repositories
 {
+    /// <summary>
+    /// Implementation for interface IBlogPostRepository  
+    /// </summary>
     public class BlogPostRepository : IBlogPostRepository
     {
         private readonly ApiDbContext _context;
