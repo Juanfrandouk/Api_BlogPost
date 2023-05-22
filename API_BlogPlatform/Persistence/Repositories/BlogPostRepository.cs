@@ -1,6 +1,7 @@
 ﻿using API_BlogPlatform.Domain.IRepositories;
 using API_BlogPlatform.Domain.Models;
 using API_BlogPlatform.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,21 +16,21 @@ namespace API_BlogPlatform.Persistence.Repositories
         {
             _context = context;
         }
-        public void AddBlogPost(BlogPost blogPost)
+        public async Task AddBlogPost(BlogPost blogPost)
         {
             _context.BlogPost.Add(blogPost);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<BlogPost> GetAllBlogPosts()
+        public async Task<IEnumerable<BlogPost>> GetAllBlogPosts()
         {
-            var listBlogPost = _context.BlogPost.Select(o => new BlogPost
+            var listBlogPost = await _context.BlogPost.Select(o => new BlogPost
             {
                 Id = o.Id,
                 Title = o.Title,
                 Content = o.Content,
                 Author = o.Author
-            }).ToList();
+            }).ToListAsync();
 
             return listBlogPost;
         }

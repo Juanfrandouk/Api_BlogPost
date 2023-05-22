@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,6 +33,7 @@ namespace API_BlogPlatform
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Adding 
             services.AddDbContext<ApiDbContext>(options => options.UseInMemoryDatabase(Configuration.GetConnectionString("Conexion")));
             services.AddScoped<IBlogPostRepository, BlogPostRepository>();
             services.AddScoped<IBlogPostService, BlogPostService>();
@@ -39,7 +41,12 @@ namespace API_BlogPlatform
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_BlogPlatform", Version = "v1" });
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "API_BlogPlatform.xml");
+                c.IncludeXmlComments(filePath);
+
+
             });
+            var filePath = Path.Combine(System.AppContext.BaseDirectory, "MyApi.xml");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

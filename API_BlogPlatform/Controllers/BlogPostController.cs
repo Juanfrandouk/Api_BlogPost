@@ -25,15 +25,15 @@ namespace API_BlogPlatform.Controllers
         /// <param name="blogPost"></param>
         /// <returns>200 when Ok; 400 when bad request </returns>
         [HttpPost]
-        public IActionResult Post([FromBody] BlogPost blogPost)
+        public async Task<IActionResult> Post([FromBody] BlogPost blogPost)
         {
             try
             {
-                if (blogPost == null)
+                if (blogPost.Author == null || blogPost.Content == null || blogPost.Title == null)
                 {
                     return BadRequest(new { message = "Blog no valido" });
                 }
-                _blogPostService.AddBlogPost(blogPost);
+                await _blogPostService.AddBlogPost(blogPost);
                 return Ok(blogPost);
             }
             catch (Exception ex)
@@ -48,11 +48,11 @@ namespace API_BlogPlatform.Controllers
         /// </summary>
         /// <returns>list of blogPost</returns>
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var listBlogPost = _blogPostService.GetAllBlogPosts();
+                var listBlogPost = await _blogPostService.GetAllBlogPosts();
                 return Ok(listBlogPost);
             }
             catch (Exception ex)

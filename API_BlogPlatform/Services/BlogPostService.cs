@@ -15,14 +15,14 @@ namespace API_BlogPlatform.Services
         {
             _blogPostRepository = blogPostRepository;
         }
-        public void AddBlogPost(BlogPost blogPost)
+        public async Task AddBlogPost(BlogPost blogPost)
         {
-            _blogPostRepository.AddBlogPost(blogPost);
+            await _blogPostRepository.AddBlogPost(blogPost);
         }
 
-        public IEnumerable<BlogPost> GetAllBlogPosts()
+        public async Task<IEnumerable<BlogPost>> GetAllBlogPosts()
         {
-            return _blogPostRepository.GetAllBlogPosts();
+            return await _blogPostRepository.GetAllBlogPosts();
         }
     }
 }

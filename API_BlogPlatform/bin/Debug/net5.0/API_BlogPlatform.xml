@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API_BlogPlatform</name>
+    </assembly>
+    <members>
+        <member name="M:API_BlogPlatform.Controllers.BlogPostController.Post(API_BlogPlatform.Domain.Models.BlogPost)">
+            <summary>
+            Store a new BlogPost into the repository
+            </summary>
+            <param name="blogPost"></param>
+            <returns>200 when Ok; 400 when bad request </returns>
+        </member>
+        <member name="M:API_BlogPlatform.Controllers.BlogPostController.Get">
+            <summary>
+            returns all the blogPost already stored in repository
+            </summary>
+            <returns>list of blogPost</returns>
+        </member>
+    </members>
+</doc>

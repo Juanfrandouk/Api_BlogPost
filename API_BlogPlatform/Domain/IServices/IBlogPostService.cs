@@ -8,7 +8,7 @@ namespace API_BlogPlatform.Domain.IServices
 {
     public interface IBlogPostService
     {
-        IEnumerable<BlogPost> GetAllBlogPosts(); // Returns a list of all blog posts.
-        void AddBlogPost(BlogPost blogPost); // Adds a new blog post to the repository.
+        Task<IEnumerable<BlogPost>> GetAllBlogPosts(); // Returns a list of all blog posts.
+        Task AddBlogPost(BlogPost blogPost); // Adds a new blog post to the repository.
     }
 }

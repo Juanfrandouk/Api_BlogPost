@@ -7,6 +7,7 @@ C:\Users\jfdiaz\Desktop\API_BlogPlatform\API_BlogPlatform\API_BlogPlatform\bin\D
 C:\Users\jfdiaz\Desktop\API_BlogPlatform\API_BlogPlatform\API_BlogPlatform\bin\Debug\net5.0\API_BlogPlatform.dll
 C:\Users\jfdiaz\Desktop\API_BlogPlatform\API_BlogPlatform\API_BlogPlatform\bin\Debug\net5.0\ref\API_BlogPlatform.dll
 C:\Users\jfdiaz\Desktop\API_BlogPlatform\API_BlogPlatform\API_BlogPlatform\bin\Debug\net5.0\API_BlogPlatform.pdb
+C:\Users\jfdiaz\Desktop\API_BlogPlatform\API_BlogPlatform\API_BlogPlatform\bin\Debug\net5.0\API_BlogPlatform.xml
 C:\Users\jfdiaz\Desktop\API_BlogPlatform\API_BlogPlatform\API_BlogPlatform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\jfdiaz\Desktop\API_BlogPlatform\API_BlogPlatform\API_BlogPlatform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\jfdiaz\Desktop\API_BlogPlatform\API_BlogPlatform\API_BlogPlatform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.InMemory.dll
