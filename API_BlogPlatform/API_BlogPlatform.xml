@@ -6,10 +6,10 @@
     <members>
         <member name="M:API_BlogPlatform.Controllers.BlogPostController.Post(API_BlogPlatform.Domain.Models.BlogPost)">
             <summary>
-            Store a new BlogPost into the repository
+            Adds a new blog post to the repository.
             </summary>
             <param name="blogPost"></param>
-            <returns>200 when Ok; 400 when bad request </returns>
+            <returns></returns>
         </member>
         <member name="M:API_BlogPlatform.Controllers.BlogPostController.Get">
             <summary>

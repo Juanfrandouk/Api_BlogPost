@@ -1,42 +1,51 @@
 ﻿using API_BlogPlatform.Domain.IServices;
 using API_BlogPlatform.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Serilog;
+using Microsoft.Extensions.Logging;
+using API_BlogPlatform.Utils;
 
 namespace API_BlogPlatform.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class BlogPostController : ControllerBase
+
     {
+        private readonly ILogger<BlogPostController> _logger;
         private readonly IBlogPostService _blogPostService;
-        public BlogPostController(IBlogPostService blogPostService)
+        public BlogPostController(IBlogPostService blogPostService, ILogger<BlogPostController> logger)
         {
             _blogPostService = blogPostService;
+            _logger = logger;
         }
         /// <summary>
-        /// Store a new BlogPost into the repository
+        /// Adds a new blog post to the repository.
         /// </summary>
         /// <param name="blogPost"></param>
-        /// <returns>200 when Ok; 400 when bad request </returns>
+        /// <returns></returns>
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] BlogPost blogPost)
         {
             try
             {
-                if (blogPost.Author == null || blogPost.Content == null || blogPost.Title == null)
+                if (Validator.ValidateBlogPost(blogPost))
                 {
-                    return BadRequest(new { message = "not valid Blog" });
+                    _logger.LogError(InfoMessages.ErrorBlogPostValue);
+                    return BadRequest(new { message = InfoMessages.ErrorBlogPostValue });
                 }
                 await _blogPostService.AddBlogPost(blogPost);
                 return Ok(blogPost);
             }
             catch (Exception ex)
             {
-
-                return BadRequest(ex.Message);
+                _logger.LogError(ex.Message, InfoMessages.ErrorBlogPostValueException);
+                return BadRequest(InfoMessages.ErrorBlogPostValueException);
             }
 
         }
@@ -52,14 +61,15 @@ namespace API_BlogPlatform.Controllers
                 var listBlogPost = await _blogPostService.GetAllBlogPosts();
                 if (listBlogPost == null || listBlogPost.Count() == 0)
                 {
-                    return Ok(new { message = "There is not blog resgistered " });
+                    return Ok(new { message = InfoMessages.ErrorBlogtHttpGetnull });
                 }
                 return Ok(listBlogPost);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message, InfoMessages.ErrorBlogtHttpGet);
+                return BadRequest(InfoMessages.ErrorBlogtHttpGet);
 
-                return BadRequest(ex.Message);
             }
 
         }

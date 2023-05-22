@@ -1,6 +1,7 @@
 ﻿using API_BlogPlatform.Domain.IRepositories;
 using API_BlogPlatform.Domain.IServices;
 using API_BlogPlatform.Domain.Models;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,13 +13,24 @@ namespace API_BlogPlatform.Services
     public class BlogPostService : IBlogPostService
     {
         private readonly IBlogPostRepository _blogPostRepository;
-        public BlogPostService(IBlogPostRepository blogPostRepository)
+        ILogger<BlogPostService> _logger;
+        public BlogPostService(IBlogPostRepository blogPostRepository, ILogger<BlogPostService> logger)
         {
             _blogPostRepository = blogPostRepository;
+            _logger = logger;
         }
         public async Task AddBlogPost(BlogPost blogPost)
         {
-            await _blogPostRepository.AddBlogPost(blogPost);
+            try
+            {
+                await _blogPostRepository.AddBlogPost(blogPost);
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
         }
 
         public async Task<IEnumerable<BlogPost>> GetAllBlogPosts()
