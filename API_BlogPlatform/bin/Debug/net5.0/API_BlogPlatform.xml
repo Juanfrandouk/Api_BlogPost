@@ -17,5 +17,30 @@
             </summary>
             <returns>list of blogPost</returns>
         </member>
+        <member name="T:API_BlogPlatform.Domain.IRepositories.IBlogPostRepository">
+            <summary>
+            Interface  for BlogPost class
+            </summary>
+        </member>
+        <member name="T:API_BlogPlatform.Domain.IServices.IBlogPostService">
+            <summary>
+            Interface for  BlogPostService
+            </summary>
+        </member>
+        <member name="T:API_BlogPlatform.Domain.Models.BlogPost">
+            <summary>
+            Main class in  model
+            </summary>
+        </member>
+        <member name="T:API_BlogPlatform.Persistence.Repositories.BlogPostRepository">
+            <summary>
+            Implementation for interface IBlogPostRepository  
+            </summary>
+        </member>
+        <member name="T:API_BlogPlatform.Services.BlogPostService">
+            <summary>
+            Implementacion  de  Interface IBlogPostService
+            </summary>
+        </member>
     </members>
 </doc>
