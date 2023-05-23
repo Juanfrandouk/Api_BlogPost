@@ -1,3 +1,4 @@
+using API_BlogPlatform.Utils;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -5,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,9 +29,14 @@ namespace API_BlogPlatform
                 Log.Information("Application starting up");
                 CreateHostBuilder(args).Build().Run();
             }
+            catch (SqlException dbcEx)
+            {
+                Log.Error(dbcEx.Message, InfoMessages.DatabaseErrorBlog);
+                throw;
+            }
             catch (Exception ex)
             {
-                Log.Error(ex, "The Application failed to start");
+                Log.Error(ex.Message, "The Application failed to start");
                 throw;
             }
             finally

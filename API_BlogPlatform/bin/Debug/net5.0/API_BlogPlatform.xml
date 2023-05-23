@@ -8,7 +8,7 @@
             <summary>
             Adds a new blog post to the repository.
             </summary>
-			<remarks>param  name="blogPost". Fields: Title varchar(100), Content varchar(200), Author varchar(200)</remarks>
+			<remarks>param  name="blogPost". Title: varchar(100), Content: varchar(200), Author: varchar(200)</remarks>
             <param name="blogPost"></param>
             <returns></returns>
         </member>

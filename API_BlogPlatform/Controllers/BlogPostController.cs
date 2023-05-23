@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Serilog;
 using Microsoft.Extensions.Logging;
 using API_BlogPlatform.Utils;
+using System.Data.SqlClient;
 
 namespace API_BlogPlatform.Controllers
 {
@@ -42,11 +43,21 @@ namespace API_BlogPlatform.Controllers
                 await _blogPostService.AddBlogPost(blogPost);
                 return Ok(blogPost);
             }
+            catch (SqlException dbcEx)
+            {
+                // Handle more specific SqlException exception here.  
+                _logger.LogError(dbcEx.Message, InfoMessages.DatabaseErrorBlog);
+                return BadRequest(InfoMessages.DatabaseErrorBlog);
+            }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message, InfoMessages.ErrorBlogPostValueException);
-                return BadRequest(InfoMessages.ErrorBlogPostValueException);
+
+                // Handle generic ones here.  
+                _logger.LogError(ex.Message, InfoMessages.BlogPostValueExceptioError);
+                return BadRequest(InfoMessages.BlogPostValueExceptioError);
+
             }
+
 
         }
         /// <summary>
@@ -61,9 +72,15 @@ namespace API_BlogPlatform.Controllers
                 var listBlogPost = await _blogPostService.GetAllBlogPosts();
                 if (listBlogPost == null || listBlogPost.Count() == 0)
                 {
-                    return Ok(new { message = InfoMessages.ErrorBlogtHttpGetnull });
+                    return Ok(new { message = InfoMessages.HttpGetnullErrorBlog });
                 }
                 return Ok(listBlogPost);
+            }
+            catch (SqlException dbcEx)
+            {
+                // Handle more specific SqlException exception here.  
+                _logger.LogError(dbcEx.Message, InfoMessages.DatabaseErrorBlog);
+                return BadRequest(InfoMessages.DatabaseErrorBlog);
             }
             catch (Exception ex)
             {
