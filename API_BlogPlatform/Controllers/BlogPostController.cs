@@ -35,6 +35,15 @@ namespace API_BlogPlatform.Controllers
         {
             try
             {
+                //Validate if a Blog title exists already in database
+                var validateExistance = await _blogPostService.ValidateExistence(blogPost);
+                if (validateExistance)
+                {
+
+                    return BadRequest(new { message = InfoMessages.ValidateErrorBlogTitle });
+                }
+
+                //Validate if a Blog conteins values for all fields
                 if (Validator.ValidateBlogPost(blogPost))
                 {
                     _logger.LogError(InfoMessages.ErrorBlogPostValue);
@@ -84,6 +93,7 @@ namespace API_BlogPlatform.Controllers
             }
             catch (Exception ex)
             {
+                // Handle regular exception here.  
                 _logger.LogError(ex.Message, InfoMessages.ErrorBlogtHttpGet);
                 return BadRequest(InfoMessages.ErrorBlogtHttpGet);
 

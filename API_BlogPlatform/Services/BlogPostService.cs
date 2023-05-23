@@ -37,5 +37,10 @@ namespace API_BlogPlatform.Services
         {
             return await _blogPostRepository.GetAllBlogPosts();
         }
+
+        public async Task<bool> ValidateExistence(BlogPost blogPost)
+        {
+            return await _blogPostRepository.ValidateExistence(blogPost);
+        }
     }
 }

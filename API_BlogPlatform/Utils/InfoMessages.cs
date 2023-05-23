@@ -12,5 +12,8 @@ namespace API_BlogPlatform.Utils
         public const string ErrorBlogtHttpGet = "Error when trying to retrueve a list of blog";
         public const string HttpGetnullErrorBlog = "There is not blog resgistered ";
         public const string DatabaseErrorBlog = "A database error has ocurred";
+        public const string ValidateErrorBlogTitle = "Blog title was already in database";
+
+
     }
 }

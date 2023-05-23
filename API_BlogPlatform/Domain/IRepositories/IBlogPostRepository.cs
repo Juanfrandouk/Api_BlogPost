@@ -11,6 +11,7 @@ namespace API_BlogPlatform.Domain.IRepositories
     {
         Task<IEnumerable<BlogPost>> GetAllBlogPosts(); // Returns a list of all blog posts.
         Task AddBlogPost(BlogPost blogPost); // Adds a new blog post to the repository.
+        Task<bool> ValidateExistence(BlogPost blogPost);// validate if a blog title already exists in Database
 
     }
 }

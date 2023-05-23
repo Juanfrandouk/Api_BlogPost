@@ -37,6 +37,19 @@
             Implementation for interface IBlogPostRepository  
             </summary>
         </member>
+        <member name="M:API_BlogPlatform.Persistence.Repositories.BlogPostRepository.AddBlogPost(API_BlogPlatform.Domain.Models.BlogPost)">
+            <summary>
+            Stored a new blogbost in database
+            </summary>
+            <param name="blogPost"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_BlogPlatform.Persistence.Repositories.BlogPostRepository.GetAllBlogPosts">
+            <summary>
+            returns all blogpost already stored
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:API_BlogPlatform.Services.BlogPostService">
             <summary>
             Implementacion  de  Interface IBlogPostService

@@ -18,12 +18,21 @@ namespace API_BlogPlatform.Persistence.Repositories
         {
             _context = context;
         }
+        /// <summary>
+        /// Stored a new blogbost in database
+        /// </summary>
+        /// <param name="blogPost"></param>
+        /// <returns></returns>
         public async Task AddBlogPost(BlogPost blogPost)
         {
+
             _context.BlogPost.Add(blogPost);
             await _context.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// returns all blogpost already stored
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<BlogPost>> GetAllBlogPosts()
         {
             var listBlogPost = await _context.BlogPost.Select(o => new BlogPost
@@ -35,6 +44,12 @@ namespace API_BlogPlatform.Persistence.Repositories
             }).ToListAsync();
 
             return listBlogPost;
+        }
+
+        public async Task<bool> ValidateExistence(BlogPost blogPost)
+        {
+            var validateExistence = await _context.BlogPost.AnyAsync(x => x.Title == blogPost.Title);
+            return validateExistence;
         }
     }
 }
